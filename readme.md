@@ -20,7 +20,7 @@ Aplicación que obtiene el valor diario del dólar desde la API de Mindicador.cl
 ### Instalacion
 ```bash
 # Clonar repositorio
-git clone https://github.com/tuusuario/scraper-dolar-chile.git
+git clone https://github.com/CIOI01/Scraper-Dolar.git
 cd scraper-dolar-chile
 
 # Instalar dependencias
