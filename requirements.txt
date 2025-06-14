@@ -1,0 +1,4 @@
+requests==2.31.0 # HTTP library for Python
+pandas==2.1.0 # Data manipulation and analysis
+matplotlib==3.7.0 # Plotting library
+python-dotenv==1.0.0 # Load environment variables from .env files
