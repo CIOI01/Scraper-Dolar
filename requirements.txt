@@ -3,3 +3,8 @@ pandas # manipulación y análisis de datos
 matplotlib # librería para crear gráficos
 python-dotenv # carga de variables de entorno desde archivos .env
 flask # framework web para crear la API de n8n
+
+
+git add requirements.txt
+git commit -m "Agregando dependencias necesarias para el scraper de dolar"
+git push
