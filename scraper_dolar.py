@@ -85,6 +85,11 @@ class ScraperDolar:
         except Exception as e: 
             logging.error(f"Error grafico: {e}")        
 
+# Endpoint raíz para verificar que el servidor está funcionando correctamente
+@app.route('/', methods=['GET', 'HEAD'])
+def inicio():
+    return "🤖 Bot Financiero en línea y escuchando puerto 10000...", 200
+
 # Definimos el endpoint de la API que n8n llamará para obtener los datos del dólar
 @app.route('/api/consultar-dolar', methods=['GET'])
 def endpoint_dolar():
