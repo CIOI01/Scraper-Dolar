@@ -1,4 +1,5 @@
-requests # HTTP library for Python
-pandas # Data manipulation and analysis
-matplotlib # Plotting library
-python-dotenv # Load environment variables from .env files
+requests # librería para realizar solicitudes HTTP
+pandas # manipulación y análisis de datos
+matplotlib # librería para crear gráficos
+python-dotenv # carga de variables de entorno desde archivos .env
+flask # framework web para crear la API de n8n
