@@ -1,0 +1,135 @@
+{
+  "name": "WhatsApp_Dolar Github",
+  "nodes": [
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "models/gemini-2.5-flash",
+          "mode": "list",
+          "cachedResultName": "models/gemini-2.5-flash"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=Actúa como un analista financiero experto hablando solamente para un solo usuario. El valor del dólar hoy es de {{ $json.valor_dolar }} y su variación diaria es de {{ $json.variacion }} Escribe un mensaje de WhatsApp muy breve, amigable y profesional para informar esto a mis usuarios. Usa un par de emojis.\n"
+            }
+          ]
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.googleGemini",
+      "typeVersion": 1.1,
+      "position": [
+        208,
+        0
+      ],
+      "id": "4b21328e-81fa-40c7-b726-9bc1910c2bcf",
+      "name": "Message a model"
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "phoneNumberId": "",
+        "textBody": "={{ $json.content.parts[0].text }}\n\n📊 *Ver Gráfico de Evolución:* {{ $('HTTP Request').item.json.url_grafico }}\n\n📁 *Descargar Historial (CSV):* {{ $('HTTP Request').item.json.url_csv }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1.1,
+      "position": [
+        560,
+        0
+      ],
+      "id": "1b13894c-f9c6-4978-9936-5399da8e53ba",
+      "name": "Send message",
+      "webhookId": "37f79da1-a0cf-453e-b958-48ef3b6647c4"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 9
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        -256,
+        0
+      ],
+      "id": "78962f77-17f4-41af-a302-7ee0ea4e5a7e",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        -48,
+        0
+      ],
+      "id": "48aed813-0155-45c0-acf6-01c10200ec79",
+      "name": "HTTP Request"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Message a model": {
+      "main": [
+        [
+          {
+            "node": "Send message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Message a model",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send message": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "4507fdf5-4035-43f4-923c-870bd42c24e7",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "df25096f5f43479cc276d2d5c7c4120eb7f2b50fe548a8ab9f66f192a06f3687"
+  },
+  "id": "Zk0IGKuX0fEtDbB1",
+  "tags": []
+}
